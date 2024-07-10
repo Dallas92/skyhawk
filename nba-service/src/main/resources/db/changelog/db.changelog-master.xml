@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="dbulegenov">
+        <sql>
+            CREATE TABLE player_stats
+            (
+                id             SERIAL PRIMARY KEY,
+                player_id      INTEGER NOT NULL,
+                team_id        INTEGER NOT NULL,
+                points         INTEGER NOT NULL,
+                rebounds       INTEGER NOT NULL,
+                assists        INTEGER NOT NULL,
+                steals         INTEGER NOT NULL,
+                blocks         INTEGER NOT NULL,
+                fouls          INTEGER NOT NULL,
+                turnovers      INTEGER NOT NULL,
+                minutes_played FLOAT   NOT NULL
+            );
+
+            CREATE INDEX idx_player_id ON player_stats(player_id);
+            CREATE INDEX idx_team_id ON player_stats(team_id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
