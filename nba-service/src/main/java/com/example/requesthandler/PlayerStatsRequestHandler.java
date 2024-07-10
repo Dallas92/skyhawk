@@ -29,7 +29,7 @@ public class PlayerStatsRequestHandler implements HttpHandler {
       try {
         SavePlayerStatsRequest request = getRequest(exchange);
         DbService.getInstance().savePlayerStatistics(request);
-        exchange.sendResponseHeaders(HttpStatus.ACCEPTED.getCode(), -1);
+        exchange.sendResponseHeaders(HttpStatus.NO_CONTENT.getCode(), -1);
       } catch (BadRequestException ex) {
         HttpResponseUtils.prepareBadRequestError(exchange, ex.getViolations());
       } catch (Exception ex) {

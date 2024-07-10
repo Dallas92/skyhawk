@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "d6f2101a-6158-4c30-8511-e362d20d81af",
+		"name": "NBA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9146882"
+	},
+	"item": [
+		{
+			"name": "save player stats",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"playerId\": 1,\n    \"teamId\": 3,\n    \"points\": 100,\n    \"rebounds\": 20,\n    \"assists\": 30,\n    \"steals\": 40,\n    \"blocks\": 50,\n    \"fouls\": 4,\n    \"turnovers\": 10,\n    \"minutesPlayed\": 30\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/save-player-stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"save-player-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get average player stats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"playerId\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/average-player-stats?playerId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"average-player-stats"
+					],
+					"query": [
+						{
+							"key": "playerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get average team stats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"playerId\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/average-team-stats?teamId=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"average-team-stats"
+					],
+					"query": [
+						{
+							"key": "teamId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
