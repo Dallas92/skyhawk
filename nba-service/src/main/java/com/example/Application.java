@@ -9,6 +9,9 @@ import com.example.util.PropertiesConfigUtil;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.sql.SQLException;
+
+import liquibase.exception.LiquibaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,13 +19,11 @@ public class Application {
 
   private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-  static {
+  public static void main(String[] args) throws IOException, SQLException, LiquibaseException {
     LocalUtils.init();
     PropertiesConfigUtil.init();
     DbUtils.init();
-  }
 
-  public static void main(String[] args) throws IOException {
     HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
     server.createContext("/api/save-player-stats", new PlayerStatsRequestHandler());
     server.createContext("/api/average-player-stats", new AveragePlayerStatisticsRequestHandler());

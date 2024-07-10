@@ -1,39 +1,18 @@
 version: '3.8'
 
 services:
-  nba-service1:
+  nba-service:
     image: nba-service:latest
-    container_name: nba-service1
+    container_name: nba-service
+    restart: on-failure
     depends_on:
       - postgres
     ports:
-      - "8081:8080"
+      - "8080:8080"
     environment:
       - DB_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
       - DB_DATASOURCE_USERNAME=user
       - DB_DATASOURCE_PASSWORD=password
-
-  nba-service2:
-    image: nba-service:latest
-    container_name: nba-service2
-    depends_on:
-      - postgres
-    ports:
-      - "8082:8080"
-    environment:
-      - DB_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
-      - DB_DATASOURCE_USERNAME=user
-      - DB_DATASOURCE_PASSWORD=password
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    restart: always
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: user@mail.com
-      PGADMIN_DEFAULT_PASSWORD: password
 
   postgres:
     image: postgres:13
@@ -45,3 +24,14 @@ services:
     ports:
       - "5432:5432"
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@mail.com
+      PGADMIN_DEFAULT_PASSWORD: password

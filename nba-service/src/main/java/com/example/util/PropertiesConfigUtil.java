@@ -2,6 +2,8 @@ package com.example.util;
 
 import com.example.Application;
 import com.example.config.GlobalConfig;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import lombok.experimental.UtilityClass;
@@ -12,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class PropertiesConfigUtil {
   private static final Logger logger = LoggerFactory.getLogger(PropertiesConfigUtil.class);
 
-  public static void init() {
+  public static void init() throws IOException {
     try (InputStream input =
         Application.class.getClassLoader().getResourceAsStream("application.properties")) {
       Properties prop = new Properties();
@@ -25,6 +27,7 @@ public class PropertiesConfigUtil {
       logger.info("Config properties initialized successfully!");
     } catch (Exception ex) {
       logger.error(ex.getMessage(), ex);
+      throw ex;
     }
   }
 
